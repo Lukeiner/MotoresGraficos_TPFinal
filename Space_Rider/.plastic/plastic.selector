@@ -1,0 +1,4 @@
+repository "Space_Rider 2026-04-09_20-49-21/Space_Rider@4674143479029@cloud"
+  path "/"
+    br "/main"
+    co "/main"
