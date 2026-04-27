@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private CurrencyManager currencyManager;
+    [SerializeField] private GameObject turretPrefab;
     private void OnEnable()
     {
         TileEvents.OnTileClicked += HandleTileClick;
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Abrir menú de construcción en: " + tile.name);
         if (currencyManager.TrySpend(50))
         {
-            tile.SetATurretPublic(new Turret());
+            tile.SetATurretPublic(Instantiate(turretPrefab,tile.transform).GetComponentInChildren<Turret>());
             Debug.Log("turret built on " + tile.name);
         }
         else
