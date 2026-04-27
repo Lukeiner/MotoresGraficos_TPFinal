@@ -1,13 +1,16 @@
+using System;
+using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 
 public class CurrencyManager : MonoBehaviour
 {
    [SerializeField]int playerCurrency = 100;
+   [SerializeField] TMP_Text textContainer;
 
     void Start()
     {
-        TileEvents.OnTileClicked += HandleTileClicked;
         CurrencyEvents.OnEnemyKilled += HandleEnemyKilled;
         
     }
@@ -17,16 +20,21 @@ public class CurrencyManager : MonoBehaviour
         playerCurrency += enemy.GetReward();
         Debug.Log("Player Currency: " + playerCurrency);
     }
-    private void HandleTileClicked(TilesTurret tile)
+    public bool TrySpend(int cost)
     {
-        if (playerCurrency >= 50)
+        if (playerCurrency >= cost)
         {
-            playerCurrency -= 50;
-            Debug.Log("Torre construida! Player Currency: " + playerCurrency);
+            playerCurrency -= cost;
+            return true;
         }
-        else
-        {
-            Debug.Log("No tienes suficiente dinero para construir esta torre.");
-        }
+        return false;
+    }
+    private void OnDestroy()
+    {
+        CurrencyEvents.OnEnemyKilled -= HandleEnemyKilled;
+    }
+    private void Update()
+    {
+        textContainer.text = playerCurrency.ToString();
     }
 }

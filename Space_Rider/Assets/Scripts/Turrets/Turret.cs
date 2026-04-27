@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int level = 1;
+    public float range = 5f;
+    public int damage = 50;
     void Start()
     {
         
@@ -12,5 +14,22 @@ public class Turret : MonoBehaviour
     void Update()
     {
         
+    }
+    public void Upgrade()
+    {
+       if (level == 1)
+       {
+           level = 2;
+           range += 2f;
+           damage += 25;
+           Debug.Log("Turret upgraded to level 2");
+       }
+       else if (level == 2)
+       {
+           level = 3;
+           range += 3f;
+           damage += 50;
+           Debug.Log("Turret upgraded to level 3");
+       }
     }
 }

@@ -51,4 +51,14 @@ public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Open turret menu");
     }
+    public void SetATurretPublic(Turret turret)
+    {
+  
+        actualTurret = turret;
+        thereIsATurret = true;
+    }
+    public Turret GetActualTurret()
+    {
+        return actualTurret;
+    }
 }
