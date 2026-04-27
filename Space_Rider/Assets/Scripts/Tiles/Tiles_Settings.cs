@@ -1,13 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
+
 
 
 public class Tiles_Settings : MonoBehaviour
 {
     [SerializeField] private Tiles[][] tiles;
-    [SerializeField] private int tilesSizeHorizontalLenght;
-    [SerializeField] private int tilesSizeVerticalLenght;
+    [SerializeField] private List<BoolRow> routeTiles;
+    [SerializeField] public int tilesSizeHorizontalLenght;
+    [SerializeField] public int tilesSizeVerticalLenght;
     [SerializeField] private Tiles enemyPortalTile;
+    [SerializeField] private int[][] enemyPortalTilePosition;
     [SerializeField] private Tiles baseTile;
+    [SerializeField] private int[][] baseTilePosition;
 
 
 
@@ -37,3 +42,9 @@ public class Tiles_Settings : MonoBehaviour
         
     }
 }
+[System.Serializable]
+public class BoolRow
+{
+    public bool[] row;
+}
+
