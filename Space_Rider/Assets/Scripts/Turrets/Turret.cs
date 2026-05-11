@@ -6,7 +6,6 @@ public class Turret : MonoBehaviour
 {
     [SerializeField] private int level = 1;
     [SerializeField] protected float range = 4f;
-    [SerializeField] protected int damage = 50;
     [SerializeField] protected float fireRate = 2f;
 
     protected List<Enemy> enemiesInRange = new List<Enemy>();
