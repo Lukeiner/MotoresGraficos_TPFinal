@@ -11,15 +11,21 @@ public class PathPointsManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    public PathPoint GetPathPoint(Enemy actualEnemy)
+    public void GetPathPoint(Enemy actualEnemy)
     {
-        if (actualEnemy < 0 || actualEnemy >= pathPoints.Length)
+        int actualIndex = actualEnemy.GetActualPathPointIndex();
+        if (actualIndex >= pathPoints.Length)
         {
+            actualEnemy.ReachEnd();
+            return;
             Debug.LogError("PathPointsManager: índice fuera de rango");
-            return null;
+            
         }
-        return pathPoints[actualEnemy];
+        actualEnemy.SetTarget(pathPoints[actualIndex].GetPosition());
+        actualEnemy.IncrementPathPointIndex();
     }
+
+    
 
 
 }
