@@ -9,7 +9,7 @@ public class Spawner : MonoBehaviour
 
     [Header("Posiciones")]
     public PathPoint spawnPoint;
-    public Transform endPoint;
+ 
 
     [Header("Configuracion")]
     public float spawnInterval = 2f;
@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        if (spawnPoint == null || endPoint == null)
+        if (spawnPoint == null )
         {
             Debug.LogError("EnemySpawner: faltan asignar spawnPoint o endPoint en el inspector");
             return;
@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
     {
         Enemy prefab = enemyPreFabs[Random.Range(0, enemyPreFabs.Length)];
         Enemy enemy = Instantiate(prefab, spawnPoint.GetPosition(), Quaternion.identity);
-        enemy.SetTarget(endPoint.position);
+
     }
 
     public void SetTarget(Vector3 t)

@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
             spriteRenderer = GetComponent<SpriteRenderer>();
 
         originalColor = spriteRenderer.color;
+        PathPointsEvents.OnNextPathPoint?.Invoke(this);
     }
 
     void Update()
@@ -60,7 +61,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = originalColor;
     }
 
-    protected void Die()
+    public void Die()
     {
         CurrencyEvents.OnEnemyKilled?.Invoke(this);
         if (this == null) return;
@@ -78,7 +79,7 @@ public class Enemy : MonoBehaviour
         arrived = false;
         
     }
-    protected virtual void ReachEnd()
+    public void ReachEnd()
     {
         if (this == null) return; // ya fue destruido
         Destroy(gameObject);
