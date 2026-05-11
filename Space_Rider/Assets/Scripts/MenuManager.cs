@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     [Header("Display Settings")]
     public Toggle fullscreenToggle;
