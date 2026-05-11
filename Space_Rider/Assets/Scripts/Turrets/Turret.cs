@@ -5,11 +5,12 @@ using System.Collections.Generic;
 public class Turret : MonoBehaviour
 {
     [SerializeField] private int level = 1;
-    [SerializeField] private float range = 4f;
-    [SerializeField] private int damage = 50;
-    [SerializeField] private float fireRate = 2f;
+    [SerializeField] protected float range = 4f;
+    [SerializeField] protected float fireRate = 2f;
+    [SerializeField] protected int damage = 50;
+    [SerializeField] protected GameObject bulletPrefab;
 
-    private List<Enemy> enemiesInRange = new List<Enemy>();
+    protected List<Enemy> enemiesInRange = new List<Enemy>();
 
     void Start()
     {
@@ -68,7 +69,7 @@ public class Turret : MonoBehaviour
         }
     }
 
-    private IEnumerator FireRoutine()
+    protected virtual IEnumerator FireRoutine()
     {
         while (true)
         {
@@ -88,14 +89,8 @@ public class Turret : MonoBehaviour
         }
     }
 
-    private void Shoot(Enemy enemy)
+    protected virtual void Shoot(Enemy enemy)
     {
-        Debug.Log("Shooting at enemy: " + enemy.name);
-        enemy.TakeDamage(damage);
-
-        if (enemy == null || enemy.gameObject == null)
-        {
-            enemiesInRange.Remove(enemy);
-        }
+        
     }
 }
