@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected int health = 100;
     [SerializeField] protected int reward = 50;
     [SerializeField] protected float velocity = 1f;
+    [SerializeField] protected int damageToBase = 1;
     [Header("Visuals")]
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Color damageColor = Color.red;
@@ -81,7 +82,8 @@ public class Enemy : MonoBehaviour
     }
     public void ReachEnd()
     {
-        if (this == null) return; // ya fue destruido
+        if (this == null) return;
+        EnemyEvents.OnEnemyHitBase?.Invoke(this.damageToBase);
         Destroy(gameObject);
     }
 
