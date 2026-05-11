@@ -8,10 +8,10 @@ public class Spawner : MonoBehaviour
     public Enemy[] enemyPreFabs;
 
     [Header("Posiciones")]
-    public Transform spawnPoint;
+    public PathPoint spawnPoint;
     public Transform endPoint;
 
-    [Header("Configuración")]
+    [Header("Configuracion")]
     public float spawnInterval = 2f;
 
     private Vector3 target;
@@ -29,7 +29,7 @@ public class Spawner : MonoBehaviour
     void SpawnEnemy()
     {
         Enemy prefab = enemyPreFabs[Random.Range(0, enemyPreFabs.Length)];
-        Enemy enemy = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+        Enemy enemy = Instantiate(prefab, spawnPoint.GetPosition(), Quaternion.identity);
         enemy.SetTarget(endPoint.position);
     }
 

@@ -10,7 +10,7 @@ public class AudioSlider : MonoBehaviour
 
     void Start()
     {
-        audioManager = FindObjectOfType<MenuAudioManager>();
+        audioManager = Object.FindAnyObjectByType<MenuAudioManager>();
         slider = GetComponent<Slider>();
 
         if (audioManager == null)
