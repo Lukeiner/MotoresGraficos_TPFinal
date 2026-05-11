@@ -48,8 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BasicTurret
   level: 1
   range: 4
-  damage: 50
   fireRate: 2
+  damage: 50
+  bulletPrefab: {fileID: 1561322935201527436, guid: a67d89b0384ac864299a4a8f2aa491ea,
+    type: 3}
   firePoint: {fileID: 6157912846074495149}
 --- !u!58 &7050316913764065059
 CircleCollider2D:

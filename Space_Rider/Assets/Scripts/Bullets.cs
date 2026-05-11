@@ -3,9 +3,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
-    [SerializeField] private int damage = 40;
+    [SerializeField] private int damage;
 
     private Enemy target;
+
+    public void SetDamage(int dmg)
+    {
+        damage = dmg;
+    }
 
     public void SetTarget(Enemy enemy)
     {
