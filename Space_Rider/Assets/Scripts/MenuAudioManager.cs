@@ -48,17 +48,27 @@ public class MenuAudioManager : MonoBehaviour
         SetMusicVolume(music);
         SetSFXVolume(sfx);
 
-        UpdateMusic(SceneManager.GetActiveScene().name);
+        UpdateAudio(SceneManager.GetActiveScene().name);
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UpdateMusic(scene.name);
+        UpdateAudio(scene.name);
     }
 
-    void UpdateMusic(string sceneName)
+    void UpdateAudio(string sceneName)
     {
-        if (sceneName == "MainMenuScene" || sceneName == "MainMenuOptionsScene")
+        // ✅ Escenas donde SI funciona música y SFX
+        bool menuScene =
+            sceneName == "MainMenuScene" ||
+            sceneName == "MainMenuOptionsScene" ||
+            sceneName == "LevelSelectorScene" ||
+            sceneName == "Cutscene1" ||
+            sceneName == "Cutscene2" ||
+            sceneName == "Cutscene3";
+
+        // 🎵 MUSIC
+        if (menuScene)
         {
             if (musicSource != null && !musicSource.isPlaying)
             {
@@ -71,12 +81,21 @@ public class MenuAudioManager : MonoBehaviour
             if (musicSource != null)
                 musicSource.Stop();
         }
+
+        // 🔊 SFX ENABLE/DISABLE
+        if (sfxSource != null)
+        {
+            sfxSource.enabled = menuScene;
+        }
     }
 
     // 🔊 CLICK
     public void PlayClick()
     {
-        if (sfxSource != null && clickSound != null && !sfxSource.mute)
+        if (sfxSource != null &&
+            sfxSource.enabled &&
+            clickSound != null &&
+            !sfxSource.mute)
         {
             sfxSource.PlayOneShot(clickSound);
         }
@@ -85,7 +104,10 @@ public class MenuAudioManager : MonoBehaviour
     // 🖱️ HOVER
     public void PlayHover()
     {
-        if (sfxSource != null && hoverSound != null && !sfxSource.mute)
+        if (sfxSource != null &&
+            sfxSource.enabled &&
+            hoverSound != null &&
+            !sfxSource.mute)
         {
             sfxSource.PlayOneShot(hoverSound);
         }
