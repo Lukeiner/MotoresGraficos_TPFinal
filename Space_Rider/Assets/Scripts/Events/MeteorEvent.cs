@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
-public class MeteorEvent : MonoBehaviour
+public class MeteorEvent : MonoBehaviour, IGameEvent
 {
     [Header("Posiciones de impacto")]
 
