@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7239f864f7a5e254eb51eb02b237691d, type: 3}
-  m_Name: Level1
+  m_Script: {fileID: 11500000, guid: 30617d847b3f9b247a484b28bf22af83, type: 3}
+  m_Name: Level1Wave3
   m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
-  wavesConfigs:
-  - {fileID: 11400000, guid: 97276a17828fa994d8d125dab125b4df, type: 2}
-  - {fileID: 11400000, guid: 9e644dde1c96e6d44a30ce0b286f2b83, type: 2}
+  waves:
+  - enemyPrefab: {fileID: 4685133741805561128, guid: 4f841c9357b3238478534ed1a6f4bb93,
+      type: 3}
+    count: 5
+    spawnInterval: 0.75

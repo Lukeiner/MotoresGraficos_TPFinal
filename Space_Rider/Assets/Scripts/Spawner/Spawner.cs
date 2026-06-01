@@ -4,14 +4,14 @@ using System.Collections;
 public class Spawner : MonoBehaviour
 {
     [Header("Configuración de nivel")]
-    public WavesConfig levelConfig;   
+    public LevelConfig levelConfig;
     public PathPoint spawnPoint;
 
     private void Start()
     {
         if (spawnPoint == null || levelConfig == null)
         {
-            Debug.LogError("Spawner: faltan asignar spawnPoint o levelConfig en el inspector");
+            Debug.LogError("Spawner: you haven't assigned a spawn point or level config!");
             return;
         }
 
@@ -20,14 +20,19 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
-        foreach (var wave in levelConfig.waves)
+        foreach (var wavesConfig in levelConfig.wavesConfigs)
         {
-            for (int i = 0; i < wave.count; i++)
+            foreach (var wave in wavesConfig.waves)
             {
-                Instantiate(wave.enemyPrefab, spawnPoint.GetPosition(), Quaternion.identity);
-                yield return new WaitForSeconds(wave.spawnInterval);
+                for (int i = 0; i < wave.count; i++)
+                {
+                    Instantiate(wave.enemyPrefab, spawnPoint.GetPosition(), Quaternion.identity);
+                    yield return new WaitForSeconds(wave.spawnInterval);
+                }
             }
+
+            // Podés meter un delay entre waves si querés
+            yield return new WaitForSeconds(2f);
         }
     }
-
 }

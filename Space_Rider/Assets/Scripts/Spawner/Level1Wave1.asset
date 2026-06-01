@@ -13,12 +13,7 @@ MonoBehaviour:
   m_Name: Level1Wave1
   m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
   waves:
-  - enemyPrefab: {fileID: 0}
-    count: 0
-    spawnInterval: 0
-  - enemyPrefab: {fileID: 0}
-    count: 0
-    spawnInterval: 0
-  - enemyPrefab: {fileID: 0}
-    count: 0
-    spawnInterval: 0
+  - enemyPrefab: {fileID: 4685133741805561128, guid: 4f841c9357b3238478534ed1a6f4bb93,
+      type: 3}
+    count: 5
+    spawnInterval: 0.5
