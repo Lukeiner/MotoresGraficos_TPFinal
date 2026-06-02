@@ -8,6 +8,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private float range = 4f;
     [SerializeField] private int damage = 50;
     [SerializeField] private float fireRate = 2f;
+    [SerializeField] private LaserBeam laserBeamPrefab;
 
     private List<Enemy> enemiesInRange = new List<Enemy>();
 
@@ -19,6 +20,14 @@ public class Turret : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position, transform.forward * range, Color.green);
+        if (enemiesInRange.Count > 0)
+        {
+            Enemy target = enemiesInRange[0];
+            if (target != null)
+            {
+                laserBeamPrefab.SetTarget(target.transform);
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()
