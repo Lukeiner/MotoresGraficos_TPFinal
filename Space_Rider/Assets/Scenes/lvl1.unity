@@ -1683,10 +1683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9a1d58911f923478ecbbb3801a4879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  enemyPreFabs:
-  - {fileID: 4685133741805561128, guid: 4f841c9357b3238478534ed1a6f4bb93, type: 3}
+  levelConfig: {fileID: 11400000, guid: 7056711daa53423488d0a724646326fe, type: 2}
   spawnPoint: {fileID: 410029897}
-  spawnInterval: 4
 --- !u!114 &891117356
 MonoBehaviour:
   m_ObjectHideFlags: 0
