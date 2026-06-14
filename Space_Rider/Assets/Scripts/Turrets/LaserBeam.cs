@@ -5,22 +5,47 @@ public class LaserBeam : MonoBehaviour
     public Transform startPoint;
     public Transform targetPoint;
     [SerializeField] private ParticleSystem particleSystem;
-    [SerializeField] private GameObject particleSystemGameObject;
+
+    [SerializeField] private GameObject particleSystemGameObjectRay;
+    [SerializeField] private GameObject particleSystemGameObjectImpact;
+    [SerializeField] private GameObject actualTarget;
 
     void Start()
     {
         startPoint.position = transform.position; 
         particleSystem.transform.position = startPoint.position;
     }
-
-    public void SetTarget(Transform target)
+    void Update()
     {
-        targetPoint = target;
+        if (actualTarget != null)
+        {
+            UpdateVisuals();
+        }
+        else
+        {
+            particleSystemGameObjectRay.SetActive(false);
+        }
+    }
+
+    public void SetTarget(GameObject target)
+    {
+
+        actualTarget = target;
+
+        particleSystemGameObjectRay.SetActive(true);
+        particleSystemGameObjectImpact.SetActive(true);
+    }
+    public void UpdateVisuals()
+    {
+        targetPoint = actualTarget.transform;
         Vector3 direction = (targetPoint.position - startPoint.position).normalized;
         float distance = Vector3.Distance(startPoint.position, targetPoint.position);
 
-        // Ajusta la escala del sistema de partículas para que alcance el objetivo
-        particleSystem.transform.localScale = new Vector3(1, 1, 1);
-        particleSystemGameObject.transform.rotation = Quaternion.LookRotation(direction);
+
+        particleSystem.transform.localScale = new Vector3(-distance/2f, 1, 1);
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        particleSystemGameObjectRay.transform.rotation = Quaternion.Euler(0, 0, angle);
+        particleSystemGameObjectImpact.transform.position = targetPoint.position;
     }
 }

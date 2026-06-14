@@ -11,6 +11,7 @@ public class Turret : MonoBehaviour
     [SerializeField] private LaserBeam laserBeamPrefab;
 
     private List<Enemy> enemiesInRange = new List<Enemy>();
+    private Enemy currentTarget;
 
     void Start()
     {
@@ -20,14 +21,7 @@ public class Turret : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position, transform.forward * range, Color.green);
-        if (enemiesInRange.Count > 0)
-        {
-            Enemy target = enemiesInRange[0];
-            if (target != null)
-            {
-                laserBeamPrefab.SetTarget(target.transform);
-            }
-        }
+
     }
 
     private void OnDrawGizmosSelected()
@@ -64,6 +58,12 @@ public class Turret : MonoBehaviour
         {
             enemiesInRange.Add(enemy);
             Debug.Log("Enemy entered range: " + enemy.name);
+
+            // Si no tenemos target actual, lo seteamos
+            if (currentTarget == null)
+            {
+                SetCurrentTarget();
+            }
         }
     }
 
@@ -74,24 +74,29 @@ public class Turret : MonoBehaviour
         {
             enemiesInRange.Remove(enemy);
             Debug.Log("Enemy left range: " + enemy.name);
+
+            // Si el que salió era el target actual, buscamos otro
+            if (currentTarget == enemy)
+            {
+                SetCurrentTarget();
+            }
         }
+    }
+
+    private void SetCurrentTarget()
+    {
+        // Simplemente elegimos el primero de la lista
+        currentTarget = enemiesInRange.Count > 0 ? enemiesInRange[0] : null;
+        laserBeamPrefab.SetTarget(currentTarget?.gameObject);
     }
 
     private IEnumerator FireRoutine()
     {
         while (true)
         {
-            if (enemiesInRange.Count > 0)
+            if (currentTarget != null)
             {
-                Enemy target = enemiesInRange[0]; 
-                if (target != null)
-                {
-                    Shoot(target);
-                }
-                else
-                {
-                    enemiesInRange.RemoveAt(0); 
-                }
+                Shoot(currentTarget);
             }
             yield return new WaitForSeconds(fireRate);
         }
@@ -99,12 +104,15 @@ public class Turret : MonoBehaviour
 
     private void Shoot(Enemy enemy)
     {
-        Debug.Log("Shooting at enemy: " + enemy.name);
-        enemy.TakeDamage(damage);
-
         if (enemy == null || enemy.gameObject == null)
         {
             enemiesInRange.Remove(enemy);
+            SetCurrentTarget();
+            return;
         }
+
+        Debug.Log("Shooting at enemy: " + enemy.name);
+        enemy.TakeDamage(damage);
+
     }
 }
