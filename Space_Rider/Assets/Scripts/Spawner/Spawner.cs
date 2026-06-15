@@ -1,40 +1,38 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
-    [Header("Prefabs")]
-
-    public Enemy[] enemyPreFabs;
-
-    [Header("Posiciones")]
+    [Header("Configuración de nivel")]
+    public LevelConfig levelConfig;
     public PathPoint spawnPoint;
- 
-
-    [Header("Configuracion")]
-    public float spawnInterval = 2f;
-
-    private Vector3 target;
 
     private void Start()
     {
-        if (spawnPoint == null )
+        if (spawnPoint == null || levelConfig == null)
         {
-            Debug.LogError("EnemySpawner: faltan asignar spawnPoint o endPoint en el inspector");
+            Debug.LogError("Spawner: you haven't assigned a spawn point or level config!");
             return;
         }
-        InvokeRepeating(nameof(SpawnEnemy), 0f, spawnInterval);
+
+        StartCoroutine(SpawnRoutine());
     }
 
-    void SpawnEnemy()
+    private IEnumerator SpawnRoutine()
     {
-        Enemy prefab = enemyPreFabs[Random.Range(0, enemyPreFabs.Length)];
-        Enemy enemy = Instantiate(prefab, spawnPoint.GetPosition(), Quaternion.identity);
+        foreach (var wavesConfig in levelConfig.wavesConfigs)
+        {
+            foreach (var wave in wavesConfig.waves)
+            {
+                for (int i = 0; i < wave.count; i++)
+                {
+                    Instantiate(wave.enemyPrefab, spawnPoint.GetPosition(), Quaternion.identity);
+                    yield return new WaitForSeconds(wave.spawnInterval);
+                }
+            }
 
-    }
-
-    public void SetTarget(Vector3 t)
-    {
-        target = t;
+            // Podés meter un delay entre waves si querés
+            yield return new WaitForSeconds(2f);
+        }
     }
 }

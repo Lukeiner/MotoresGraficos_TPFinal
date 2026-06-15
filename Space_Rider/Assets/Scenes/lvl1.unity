@@ -180,7 +180,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (8)
+      value: TileTurret (4,2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -316,7 +316,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (6)
+      value: TileTurret (3,2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -390,7 +390,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (34)
+      value: TileTurret (5,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -464,7 +464,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (3)
+      value: TileTurret (1,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -538,7 +538,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (25)
+      value: TileTurret (6,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -656,7 +656,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (5)
+      value: TileTurret (2,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -774,7 +774,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (35)
+      value: TileTurret (4,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -848,7 +848,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (24)
+      value: TileTurret (3,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1248,7 +1248,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (29)
+      value: TileTurret (8,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1551,7 +1551,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (15)
+      value: TileTurret (8,2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1625,7 +1625,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (7)
+      value: TileTurret (3,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1683,10 +1683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de9a1d58911f923478ecbbb3801a4879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Spawner
-  enemyPreFabs:
-  - {fileID: 4685133741805561128, guid: 4f841c9357b3238478534ed1a6f4bb93, type: 3}
+  levelConfig: {fileID: 11400000, guid: 7056711daa53423488d0a724646326fe, type: 2}
   spawnPoint: {fileID: 410029897}
-  spawnInterval: 4
 --- !u!114 &891117356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1766,7 +1764,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (9)
+      value: TileTurret (5,2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1840,7 +1838,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (32)
+      value: TileTurret (4,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1914,7 +1912,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (17)
+      value: TileTurret (7,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1988,7 +1986,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (30)
+      value: TileTurret (7,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2062,7 +2060,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (11)
+      value: TileTurret (4,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2136,7 +2134,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (20)
+      value: TileTurret (1,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2210,7 +2208,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (18)
+      value: TileTurret (0,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2328,7 +2326,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (2)
+      value: TileTurret (1,2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2402,7 +2400,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (14)
+      value: TileTurret (7,2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2476,7 +2474,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (21)
+      value: TileTurret (2,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2550,7 +2548,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (23)
+      value: TileTurret (1,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2624,7 +2622,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (31)
+      value: TileTurret (3,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3061,7 +3059,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (19)
+      value: TileTurret (0,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3135,7 +3133,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (26)
+      value: TileTurret (6,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3241,7 +3239,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (1)
+      value: TileTurret (0,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3438,7 +3436,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (4)
+      value: TileTurret (2,2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3512,7 +3510,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (27)
+      value: TileTurret (7,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3624,7 +3622,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (33)
+      value: TileTurret (5,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3698,7 +3696,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (22)
+      value: TileTurret (2,1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3772,7 +3770,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (16)
+      value: TileTurret (8,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3846,7 +3844,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (12)
+      value: TileTurret (6,2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4023,7 +4021,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (10)
+      value: TileTurret (5,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4097,7 +4095,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (13)
+      value: TileTurret (6,3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4172,40 +4170,40 @@ Transform:
   m_Children:
   - {fileID: 1377255894}
   - {fileID: 1096538639}
-  - {fileID: 1462270906}
   - {fileID: 1434140434}
-  - {fileID: 1186639037}
+  - {fileID: 1462270906}
   - {fileID: 1058356749}
-  - {fileID: 1747804057}
-  - {fileID: 1297862964}
-  - {fileID: 261016338}
-  - {fileID: 1811383043}
-  - {fileID: 175498437}
   - {fileID: 1303508192}
-  - {fileID: 60616758}
+  - {fileID: 1186639037}
+  - {fileID: 175498437}
+  - {fileID: 1297862964}
+  - {fileID: 1811383043}
+  - {fileID: 1747804057}
+  - {fileID: 261016338}
   - {fileID: 512753054}
-  - {fileID: 1914086072}
+  - {fileID: 1314550481}
+  - {fileID: 60616758}
+  - {fileID: 887071870}
+  - {fileID: 971437640}
+  - {fileID: 411052677}
+  - {fileID: 26229000}
+  - {fileID: 1028393857}
+  - {fileID: 1798608428}
+  - {fileID: 118554671}
+  - {fileID: 922325191}
+  - {fileID: 1928943355}
   - {fileID: 181962607}
-  - {fileID: 2009946218}
   - {fileID: 1448559693}
-  - {fileID: 1210454545}
+  - {fileID: 1914086072}
+  - {fileID: 2009946218}
   - {fileID: 1768063304}
+  - {fileID: 981805168}
+  - {fileID: 1210454545}
+  - {fileID: 979199546}
   - {fileID: 743554371}
   - {fileID: 2112647273}
   - {fileID: 1857682305}
   - {fileID: 655122257}
-  - {fileID: 979199546}
-  - {fileID: 981805168}
-  - {fileID: 887071870}
-  - {fileID: 1314550481}
-  - {fileID: 26229000}
-  - {fileID: 971437640}
-  - {fileID: 922325191}
-  - {fileID: 1798608428}
-  - {fileID: 1928943355}
-  - {fileID: 118554671}
-  - {fileID: 1028393857}
-  - {fileID: 411052677}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2112647272
@@ -4269,7 +4267,7 @@ PrefabInstance:
     - target: {fileID: 3315875649869975031, guid: dac89d1396d288543bf3284e5850e19b,
         type: 3}
       propertyPath: m_Name
-      value: TileTurret (28)
+      value: TileTurret (8,0)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
