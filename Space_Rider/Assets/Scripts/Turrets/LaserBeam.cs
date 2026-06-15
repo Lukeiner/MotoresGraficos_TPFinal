@@ -5,7 +5,6 @@ public class LaserBeam : MonoBehaviour
     public Transform startPoint;
     public Transform targetPoint;
     [SerializeField] private ParticleSystem particleSystem;
-
     [SerializeField] private GameObject particleSystemGameObjectRay;
     [SerializeField] private GameObject particleSystemGameObjectImpact;
     [SerializeField] private GameObject actualTarget;
@@ -24,6 +23,7 @@ public class LaserBeam : MonoBehaviour
         else
         {
             particleSystemGameObjectRay.SetActive(false);
+            particleSystemGameObjectImpact.SetActive(false);
         }
     }
 
@@ -40,7 +40,6 @@ public class LaserBeam : MonoBehaviour
         targetPoint = actualTarget.transform;
         Vector3 direction = (targetPoint.position - startPoint.position).normalized;
         float distance = Vector3.Distance(startPoint.position, targetPoint.position);
-
 
         particleSystem.transform.localScale = new Vector3(-distance/2f, 1, 1);
 
