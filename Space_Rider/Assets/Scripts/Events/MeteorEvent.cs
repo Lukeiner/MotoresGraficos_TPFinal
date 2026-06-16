@@ -8,11 +8,11 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     public List<Transform> impactPoints;
 
-    [Header("Daño")]
+    [Header("Daï¿½o")]
 
-    public float impactDamage = 1f;
+    public int impactDamage = 2000;
 
-    [Tooltip("Radio de daño en área alrededor del piunto de impacto")]
+    [Tooltip("Radio de daï¿½o en ï¿½rea alrededor del piunto de impacto")] 
 
     public float impactRadius = 1.5f;
 
@@ -20,13 +20,13 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     public float warningDuration = 2f;
 
-    [Tooltip("Prefab del meteorito (opcional, para animación de caída)")]
+    [Tooltip("Prefab del meteorito (opcional, para animaciï¿½n de caï¿½da)")]
     public GameObject meteorPreFab;
 
     [Tooltip("Prefab del indicador de advertencia en el suelo (opcional)")]
     public GameObject warningIndicatorPreFab;
 
-    [Tooltip("Prefab del efecto de explosión al impactar (opcional)")]
+    [Tooltip("Prefab del efecto de explosiï¿½n al impactar (opcional)")]
     public GameObject impactEffectPreFab;
 
     [Tooltip("LayerMask con la capa de los enemigos para detectarlos con Physics2D")]
@@ -59,7 +59,7 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         }
 
-        Debug.Log($"[MeteorEvent] ¡Meteorito cayendo en {targetPosition}! ({warningDuration}s)");
+        Debug.Log($"[MeteorEvent] ï¿½Meteorito cayendo en {targetPosition}! ({warningDuration}s)");
 
         yield return new WaitForSeconds(warningDuration);
 
@@ -89,19 +89,18 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         if (hits.Length == 0)
         {
-            Debug.Log("No hay enemigos en el área");
+            Debug.Log("No hay enemigos en el ï¿½rea");
             return;
         }
 
         foreach (Collider2D hit in hits)
         {
-          //  EnemyHealth enemyHealt = hit.GetComponent<EnemyHealth>();
-
-          //  if (enemyHealth != null )
-          //  {
-            //    enemyHealth.TakeDamage(impactDamage);
-              //  Debug.Log($"[MeteorEvent] Daño a {hit.gameObject.name}: {impactDamage}");
-            //}
+          Enemy enemyHealth = hit.GetComponent<Enemy>();
+          if (enemyHealth != null )
+          {
+                enemyHealth.TakeDamage(impactDamage);
+                  Debug.Log($"[MeteorEvent] Daï¿½o a {hit.gameObject.name}: {impactDamage}");
+        }
         }
 
     }

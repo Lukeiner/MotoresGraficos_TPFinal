@@ -18,7 +18,7 @@ public class PathPointsManager : MonoBehaviour
         {
             actualEnemy.ReachEnd();
             return;
-            Debug.LogError("PathPointsManager: índice fuera de rango");
+
             
         }
         actualEnemy.SetTarget(pathPoints[actualIndex].GetPosition());
