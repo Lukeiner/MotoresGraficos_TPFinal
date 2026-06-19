@@ -11,6 +11,7 @@ public class CurrencyManager : MonoBehaviour
     void Start()
     {
         CurrencyEvents.OnEnemyKilled += HandleEnemyKilled;
+        CurrencyEvents.OnTrySpendCurrency += TrySpend;
         
     }
 

@@ -21,16 +21,8 @@ public class TilesTurret : Tiles, IPointerClickHandler
     {
         
     }
-    private void SetATurret(Turret turret)
-    {
-        if (thereIsATurret == false)
-        {
-            actualTurret = turret;
-            thereIsATurret = true;
-        }
-    }
 
-public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("clickkkkkk");
         if (!thereIsATurret)
