@@ -10,7 +10,7 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     [Header("Daño")]
 
-    public float impactDamage = 1f;
+    public int impactDamage = 30;
 
     [Tooltip("Radio de daño en área alrededor del piunto de impacto")]
 
@@ -95,13 +95,13 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         foreach (Collider2D hit in hits)
         {
-          //  EnemyHealth enemyHealt = hit.GetComponent<EnemyHealth>();
+             Enemy enemy = hit.GetComponent<Enemy>();
 
-          //  if (enemyHealth != null )
-          //  {
-            //    enemyHealth.TakeDamage(impactDamage);
-              //  Debug.Log($"[MeteorEvent] Daño a {hit.gameObject.name}: {impactDamage}");
-            //}
+             if (enemy != null )
+                {
+                   enemy.TakeDamage(impactDamage);
+                   Debug.Log($"[MeteorEvent] Daño a {hit.gameObject.name}: {impactDamage}");
+              }
         }
 
     }
