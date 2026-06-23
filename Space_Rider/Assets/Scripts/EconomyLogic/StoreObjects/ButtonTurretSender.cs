@@ -1,13 +1,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ButtonTurretSender : MonoBehaviour
-{
-    [SerializeField] private GameObject turretPrefab;  // Datos de la torreta que se enviarán al StoreManager
+// ButtonTurretSender: solo emite intención
+public class ButtonTurretSender : MonoBehaviour {
+    [SerializeField] private GameObject turretPrefab;
 
+    [SerializeField] private int cost;
 
-    public void OnButtonClick()
-    {
-        TileEvents.SetTurret(turretPrefab.GetComponent<Turret>());
+    public void OnButtonClick() {
+        Debug.Log($"Button clicked for turret: {turretPrefab.name} with cost: {cost}");
+        GameManager.Instance.TryBuildTurret(turretPrefab, cost);
     }
 }
+

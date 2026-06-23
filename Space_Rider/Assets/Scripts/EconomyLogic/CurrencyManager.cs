@@ -5,14 +5,33 @@ using UnityEngine;
 
 public class CurrencyManager : MonoBehaviour
 {
-   [SerializeField]int playerCurrency = 100;
+   
    [SerializeField] TMP_Text textContainer;
 
     void Start()
     {
         CurrencyEvents.OnEnemyKilled += HandleEnemyKilled;
-        CurrencyEvents.OnTrySpendCurrency += TrySpend;
-        
+        textContainer.text = playerCurrency.ToString();
+    }
+    public static CurrencyManager Instance { get; private set; }
+    public event Action<int> OnCurrencyChanged;
+
+    [SerializeField] int playerCurrency = 100;
+
+    private void Awake() => Instance = this;
+
+    public bool TrySpend(int cost) {
+        if (playerCurrency >= cost) {
+            playerCurrency -= cost;
+            OnCurrencyChanged?.Invoke(playerCurrency);
+            return true;
+        }
+        return false;
+    }
+
+    public void AddCurrency(int amount) {
+        playerCurrency += amount;
+        OnCurrencyChanged?.Invoke(playerCurrency);
     }
 
     private void HandleEnemyKilled(Enemy enemy)
@@ -20,15 +39,7 @@ public class CurrencyManager : MonoBehaviour
         playerCurrency += enemy.GetReward();
         Debug.Log("Player Currency: " + playerCurrency);
     }
-    public bool TrySpend(int cost)
-    {
-        if (playerCurrency >= cost)
-        {
-            playerCurrency -= cost;
-            return true;
-        }
-        return false;
-    }
+
     private void OnDestroy()
     {
         CurrencyEvents.OnEnemyKilled -= HandleEnemyKilled;

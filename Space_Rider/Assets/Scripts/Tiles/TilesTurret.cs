@@ -8,7 +8,7 @@ public class TilesTurret : Tiles, IPointerClickHandler
     
     [SerializeField] bool thereIsATurret;
     [SerializeField] Turret actualTurret;
-    [SerializeField] int level =0;
+    [SerializeField] int level = 0;
 
 
     void Start()
@@ -27,14 +27,16 @@ public class TilesTurret : Tiles, IPointerClickHandler
         Debug.Log("clickkkkkk");
         if (!thereIsATurret)
         {
+            TileEvents.SelectTile(this);
             TileEvents.OnOpenTurretMenu?.Invoke(this);        
         }
         else
         {
             Debug.Log("Open turret menu");
 
-            
+            TileEvents.SelectTile(this);
             TileEvents.OnTileClicked?.Invoke(this);
+            
         }
     }
 

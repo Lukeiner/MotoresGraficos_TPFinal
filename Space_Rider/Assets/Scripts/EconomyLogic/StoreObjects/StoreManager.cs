@@ -9,12 +9,22 @@ public class StoreManager : MonoBehaviour
     private TurretUIConstructor turretUIConstructor;  // Referencia al constructor de UI de torretas
     void Start()
     {
-        
+        instantiateStoreUI();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void instantiateStoreUI() {
+
+        foreach (var turretData in turretStoreDataList) {
+            var uiElement = Instantiate(turretStoreUIPrefab, storeUIParent);
+            turretUIConstructor = GetComponent<TurretUIConstructor>();
+            if (turretUIConstructor != null) {
+                turretUIConstructor.ConstructTurretUI(uiElement, turretData);
+            }
+        }
     }
 }

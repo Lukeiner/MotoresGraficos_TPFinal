@@ -1,49 +1,23 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
+// GameManager: orquesta
+public class GameManager : MonoBehaviour {
+    public static GameManager Instance { get; private set; }
     [SerializeField] private CurrencyManager currencyManager;
-    [SerializeField] private GameObject turretPrefab;
-    private void OnEnable()
-    {
-        TileEvents.OnTileClicked += HandleTileClick;
-        TileEvents.OnOpenTurretMenu += HandleOpenTurretMenu;
-    }
 
-    private void OnDisable()
-    {
-        TileEvents.OnTileClicked -= HandleTileClick;
-        TileEvents.OnOpenTurretMenu -= HandleOpenTurretMenu;
-    }
+    private void Awake() => Instance = this;
 
-    private void HandleTileClick(TilesTurret tile)
-    {
-        Debug.Log("Tile con torreta clickeado: " + tile.name);
-        if (currencyManager.TrySpend(60))
-        {
-            Debug.Log("Turret upgraded on " + tile.name);
-            tile.GetActualTurret().Upgrade();
-        }
-        else
-        {
-            Debug.Log("Not enough currency to upgrade turret.");
-        }
-        
-    }
+    public void TryBuildTurret(GameObject prefab, int cost) {
+        var tile = TileEvents.GetSelectedTile();
+        Debug.Log("Selected tile: " + (tile != null ? tile.name : "None"));
+        if (tile == null) return;
 
-    private void HandleOpenTurretMenu(TilesTurret tile)
-    {
-        Debug.Log("Abrir menú de construcción en: " + tile.name);
-        if (currencyManager.TrySpend(50))
-        {
-            tile.SetATurretPublic(Instantiate(turretPrefab,tile.transform).GetComponentInChildren<Turret>());
-            Debug.Log("turret built on " + tile.name);
+        if (currencyManager.TrySpend(cost)) {
+            tile.SetATurretPublic(Instantiate(prefab,tile.transform).GetComponentInChildren<Turret>());
+            Debug.Log("Turret built!");
+        } else {
+            Debug.Log("Not enough currency!");
         }
-        else
-        {
-            Debug.Log("Not enough currency to build turret.");
-        }
-
-        
     }
 }
+
