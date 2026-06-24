@@ -8,11 +8,11 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     public List<Transform> impactPoints;
 
-    [Header("Daño")]
+    [Header("DaÃ±o")]
 
-    public int impactDamage = 50;
+    public int impactDamage = 30;
 
-    [Tooltip("Radio de daño en área alrededor del piunto de impacto")]
+    [Tooltip("Radio de daÃ±o en Ã¡rea alrededor del piunto de impacto")]
 
     public float impactRadius = 1.5f;
 
@@ -20,13 +20,13 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     public float warningDuration = 2f;
 
-    [Tooltip("Prefab del meteorito (opcional, para animación de caída)")]
+    [Tooltip("Prefab del meteorito (opcional, para animaciÃ³n de caÃ­da)")]
     public GameObject meteorPreFab;
 
     [Tooltip("Prefab del indicador de advertencia en el suelo (opcional)")]
     public GameObject warningIndicatorPreFab;
 
-    [Tooltip("Prefab del efecto de explosión al impactar (opcional)")]
+    [Tooltip("Prefab del efecto de explosiÃ³n al impactar (opcional)")]
     public GameObject impactEffectPreFab;
 
     [Tooltip("LayerMask con la capa de los enemigos para detectarlos con Physics2D")]
@@ -59,7 +59,7 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         }
 
-        Debug.Log($"[MeteorEvent] ¡Meteorito cayendo en {targetPosition}! ({warningDuration}s)");
+        Debug.Log($"[MeteorEvent] Â¡Meteorito cayendo en {targetPosition}! ({warningDuration}s)");
 
         yield return new WaitForSeconds(warningDuration);
 
@@ -71,22 +71,18 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
         if (meteorPreFab != null)
         {
             Vector2 startPosition = targetPosition + new Vector2(8f, 10f);
-
-            GameObject meteor = Instantiate(meteorPreFab, startPosition, Quaternion.identity);
-
-            Vector2 direction = (targetPosition - startPosition).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            meteor.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-            meteor.GetComponent<SpriteRenderer>().sortingOrder = 10;
-
-            // Lo movemos hacia el punto de impacto
+            GameObject meteor = Instantiate(meteorPreFab, targetPosition, Quaternion.identity);
             StartCoroutine(MoveMeteor(meteor, startPosition, targetPosition));
+            Destroy(meteor, 2f);
+
         }
 
         if (impactEffectPreFab != null )
         {
             Instantiate(impactEffectPreFab, targetPosition, Quaternion.identity);
         }
+
+        
 
         ApplyAreaDamage(targetPosition);
 
@@ -99,7 +95,7 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         while (elapsed < duration)
         {
-            if (meteor == null) yield break; // seguridad por si se destruyó
+            if (meteor == null) yield break; // seguridad por si se destruyÃ³
 
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
@@ -110,12 +106,12 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
             yield return null;
         }
 
-        // Asegurarse que llegó exactamente al destino
+        // Asegurarse que llegÃ³ exactamente al destino
         if (meteor != null)
         {
             meteor.transform.position = to;
-            ApplyAreaDamage(to);     // daño al llegar
-            Destroy(meteor, 1f);   // desaparece después del impacto
+            ApplyAreaDamage(to);     // daÃ±o al llegar
+            Destroy(meteor, 1f);   // desaparece despuÃ©s del impacto
         }
     }
 
@@ -125,20 +121,47 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         if (hits.Length == 0)
         {
-            Debug.Log("No hay enemigos en el área");
+            Debug.Log("No hay enemigos en el Ã¡rea");
             return;
         }
 
         foreach (Collider2D hit in hits)
         {
-            Enemy enemy = hit.GetComponent<Enemy>();
+             Enemy enemy = hit.GetComponent<Enemy>();
 
-            if (enemy != null)
-            {
-                enemy.TakeDamage(impactDamage);
-                Debug.Log($"[MeteorEvent] Daño a {hit.gameObject.name}: {impactDamage}");
-            }
+             if (enemy != null )
+                {
+                   enemy.TakeDamage(impactDamage);
+                   Debug.Log($"[MeteorEvent] DaÃ±o a {hit.gameObject.name}: {impactDamage}");
+              }
         }
 
+    }
+
+    private IEnumerator MoveMeteor(GameObject meteor, Vector2 from, Vector2 to)
+    {
+        float duration = 1.5f; // segundos que tarda en llegar
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            if (meteor == null) yield break; // seguridad por si se destruyÃ³
+
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            // Lerp suaviza el movimiento de A a B
+            meteor.transform.position = Vector2.Lerp(from, to, t);
+
+            yield return null;
+        }
+
+        // Asegurarse que llegÃ³ exactamente al destino
+        if (meteor != null)
+        {
+            meteor.transform.position = to;
+            ApplyAreaDamage(to);     // daÃ±o al llegar
+            Destroy(meteor, 2.5f);   // desaparece despuÃ©s del impacto
+        }
     }
 }
