@@ -10,7 +10,7 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     [Header("Daño")]
 
-    public float impactDamage = 1f;
+    public int impactDamage = 30;
 
     [Tooltip("Radio de daño en área alrededor del piunto de impacto")]
 
@@ -70,13 +70,19 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         if (meteorPreFab != null)
         {
-            Instantiate(meteorPreFab, targetPosition, Quaternion.identity);
+            Vector2 startPosition = targetPosition + new Vector2(8f, 10f);
+            GameObject meteor = Instantiate(meteorPreFab, targetPosition, Quaternion.identity);
+            StartCoroutine(MoveMeteor(meteor, startPosition, targetPosition));
+            Destroy(meteor, 2f);
+
         }
 
         if (impactEffectPreFab != null )
         {
             Instantiate(impactEffectPreFab, targetPosition, Quaternion.identity);
         }
+
+        
 
         ApplyAreaDamage(targetPosition);
 
@@ -95,14 +101,41 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         foreach (Collider2D hit in hits)
         {
-          //  EnemyHealth enemyHealt = hit.GetComponent<EnemyHealth>();
+             Enemy enemy = hit.GetComponent<Enemy>();
 
-          //  if (enemyHealth != null )
-          //  {
-            //    enemyHealth.TakeDamage(impactDamage);
-              //  Debug.Log($"[MeteorEvent] Daño a {hit.gameObject.name}: {impactDamage}");
-            //}
+             if (enemy != null )
+                {
+                   enemy.TakeDamage(impactDamage);
+                   Debug.Log($"[MeteorEvent] Daño a {hit.gameObject.name}: {impactDamage}");
+              }
         }
 
+    }
+
+    private IEnumerator MoveMeteor(GameObject meteor, Vector2 from, Vector2 to)
+    {
+        float duration = 1.5f; // segundos que tarda en llegar
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            if (meteor == null) yield break; // seguridad por si se destruyó
+
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            // Lerp suaviza el movimiento de A a B
+            meteor.transform.position = Vector2.Lerp(from, to, t);
+
+            yield return null;
+        }
+
+        // Asegurarse que llegó exactamente al destino
+        if (meteor != null)
+        {
+            meteor.transform.position = to;
+            ApplyAreaDamage(to);     // daño al llegar
+            Destroy(meteor, 2.5f);   // desaparece después del impacto
+        }
     }
 }

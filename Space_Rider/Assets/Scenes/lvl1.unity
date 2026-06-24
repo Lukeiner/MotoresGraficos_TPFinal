@@ -244,10 +244,10 @@ MonoBehaviour:
   - {fileID: 2010793316}
   - {fileID: 1698069143}
   - {fileID: 1429354395}
-  impactDamage: 1
+  impactDamage: 30
   impactRadius: 1.5
   warningDuration: 2
-  meteorPreFab: {fileID: 6174443875556020516, guid: ab050f68a6858c340ae9125fe467654c,
+  meteorPreFab: {fileID: 808201818437244509, guid: a2b751166f65ecb48b1b88b5684fb03f,
     type: 3}
   warningIndicatorPreFab: {fileID: 3373248836614146364, guid: ecddf7df3927ae54090700be34ba2914,
     type: 3}
