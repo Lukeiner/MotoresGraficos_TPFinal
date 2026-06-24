@@ -88,7 +88,7 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     }
 
-    private IEnumerator MoveMeteor(GameObject meteor, Vector2 from, Vector2 to)
+    /*private IEnumerator MoveMeteor(GameObject meteor, Vector2 from, Vector2 to)
     {
         float duration = 1.5f; // segundos que tarda en llegar
         float elapsed = 0f;
@@ -113,7 +113,7 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
             ApplyAreaDamage(to);     // daño al llegar
             Destroy(meteor, 1f);   // desaparece después del impacto
         }
-    }
+    }*/
 
     private void ApplyAreaDamage (Vector2 center)
     {

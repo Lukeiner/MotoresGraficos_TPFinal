@@ -7,6 +7,8 @@ public class Spawner : MonoBehaviour
     public LevelConfig levelConfig;
     public PathPoint spawnPoint;
 
+    private int currentWaveIndex = -1; // empieza en -1, así el botón avanza a 0
+
     private void Start()
     {
         if (spawnPoint == null || levelConfig == null)
@@ -14,25 +16,34 @@ public class Spawner : MonoBehaviour
             Debug.LogError("Spawner: you haven't assigned a spawn point or level config!");
             return;
         }
-
-        StartCoroutine(SpawnRoutine());
     }
 
-    private IEnumerator SpawnRoutine()
+    private IEnumerator SpawnRoutine(WavesConfig waveConfig)
     {
-        foreach (var wavesConfig in levelConfig.wavesConfigs)
+        foreach (var wave in waveConfig.waves)
         {
-            foreach (var wave in wavesConfig.waves)
+            for (int i = 0; i < wave.count; i++)
             {
-                for (int i = 0; i < wave.count; i++)
-                {
-                    Instantiate(wave.enemyPrefab, spawnPoint.GetPosition(), Quaternion.identity);
-                    yield return new WaitForSeconds(wave.spawnInterval);
-                }
+                Instantiate(wave.enemyPrefab, spawnPoint.GetPosition(), Quaternion.identity);
+                yield return new WaitForSeconds(wave.spawnInterval);
             }
+        }
+    }
 
-            // Podés meter un delay entre waves si querés
-            yield return new WaitForSeconds(2f);
+    public void NextWave()
+    {
+        // Avanzamos al siguiente índice
+        currentWaveIndex++;
+
+        if (currentWaveIndex < levelConfig.wavesConfigs.Count)
+        {
+            StopAllCoroutines();
+            StartCoroutine(SpawnRoutine(levelConfig.wavesConfigs[currentWaveIndex]));
+            Debug.Log("Starting wave " + (currentWaveIndex + 1));
+        }
+        else
+        {
+            Debug.Log("No more waves!");
         }
     }
 }

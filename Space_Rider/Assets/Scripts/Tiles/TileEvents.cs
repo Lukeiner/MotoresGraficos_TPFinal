@@ -1,13 +1,19 @@
+using System;
 using UnityEngine;
 
-public static class TileEvents
-{
-    public static System.Action<TilesTurret> OnTileClicked;
-    public static System.Action<TilesTurret> OnOpenTurretMenu;
-    
+// TileEvents: solo selección
+public static class TileEvents {
+    public static Action<TilesTurret> OnTileClicked;
+    public static Action<TilesTurret> OnOpenTurretMenu;
+    public static Action OnCloseTurretMenu;
 
-    public static void SetTurret(TilesTurret tile, Turret turret)
-    {
-        tile.SetATurretPublic(turret);
+    private static TilesTurret selectedTile;
+
+    public static void SelectTile(TilesTurret tile) {
+        selectedTile = tile;
+        OnOpenTurretMenu?.Invoke(tile);
+        Debug.Log("Tile selected: " + tile.name);
     }
+
+    public static TilesTurret GetSelectedTile() => selectedTile;
 }
