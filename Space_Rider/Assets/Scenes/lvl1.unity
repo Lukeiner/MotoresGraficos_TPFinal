@@ -1805,6 +1805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StoreManager
   turretStoreDataList:
   - {fileID: 11400000, guid: b814e26de4333a343a822865ff6aa61a, type: 2}
+  - {fileID: 11400000, guid: b814e26de4333a343a822865ff6aa61a, type: 2}
+  - {fileID: 11400000, guid: b814e26de4333a343a822865ff6aa61a, type: 2}
   storeUIParent: {fileID: 1996007991}
   turretStoreUIPrefab: {fileID: 8999097169363541750, guid: 10d2a395387cd564d9d64b87d92e83ee,
     type: 3}
@@ -1942,7 +1944,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 891117353}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de9a1d58911f923478ecbbb3801a4879, type: 3}
   m_Name: 

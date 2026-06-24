@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] private int level = 1;
-    [SerializeField] private float range = 4f;
-    [SerializeField] private int damage = 50;
-    [SerializeField] private float fireRate = 2f;
-    [SerializeField] private LaserBeam laserBeamPrefab;
-    [SerializeField] private TurretAnimation turretAnimation;
+    [SerializeField] protected int level = 1;
+    [SerializeField] protected float range = 4f;
+    [SerializeField] protected int damage = 50;
+    [SerializeField] protected float fireRate = 2f;
 
-    private List<Enemy> enemiesInRange = new List<Enemy>();
-    private Enemy currentTarget;
+    [SerializeField] protected TurretAnimation turretAnimation;
+
+    protected List<Enemy> enemiesInRange = new List<Enemy>();
+    protected Enemy currentTarget;
 
     void Start()
     {
@@ -83,11 +83,10 @@ public class Turret : MonoBehaviour
         }
     }
 
-    private void SetCurrentTarget()
+    protected virtual void SetCurrentTarget()
     {
         // Simplemente elegimos el primero de la lista
         currentTarget = enemiesInRange.Count > 0 ? enemiesInRange[0] : null;
-        laserBeamPrefab.SetTarget(currentTarget?.gameObject);
         turretAnimation.SetTarget(currentTarget?.gameObject);
     }
 

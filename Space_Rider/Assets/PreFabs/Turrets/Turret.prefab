@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8089226946604957269}
-  - component: {fileID: 8910834845973102454}
+  - component: {fileID: 5452628935084930193}
   - component: {fileID: 5649949349063533944}
   - component: {fileID: 4749703581076537569}
   - component: {fileID: 7050316913764065059}
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 8637379848695895594}
   m_Father: {fileID: 5765657437098648964}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8910834845973102454
+--- !u!114 &5452628935084930193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,15 +46,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3737276737388699400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 656c18ccfbab5a347b0c7843fc1ba198, type: 3}
+  m_Script: {fileID: 11500000, guid: 4341b84237a382c4ea97afa8f0f524ec, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Turret
+  m_EditorClassIdentifier: Assembly-CSharp::Turret_Laser
   level: 1
   range: 4
   damage: 50
-  fireRate: 1
-  laserBeamPrefab: {fileID: 4749703581076537569}
+  fireRate: 2
   turretAnimation: {fileID: 5649949349063533944}
+  laserBeamPrefab: {fileID: 4749703581076537569}
 --- !u!114 &5649949349063533944
 MonoBehaviour:
   m_ObjectHideFlags: 0
