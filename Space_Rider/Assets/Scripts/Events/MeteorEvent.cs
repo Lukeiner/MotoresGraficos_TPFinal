@@ -10,7 +10,7 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     [Header("Daño")]
 
-    public float impactDamage = 1f;
+    public int impactDamage = 50;
 
     [Tooltip("Radio de daño en área alrededor del piunto de impacto")]
 
@@ -70,7 +70,17 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         if (meteorPreFab != null)
         {
-            Instantiate(meteorPreFab, targetPosition, Quaternion.identity);
+            Vector2 startPosition = targetPosition + new Vector2(8f, 10f);
+
+            GameObject meteor = Instantiate(meteorPreFab, startPosition, Quaternion.identity);
+
+            Vector2 direction = (targetPosition - startPosition).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            meteor.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            meteor.GetComponent<SpriteRenderer>().sortingOrder = 10;
+
+            // Lo movemos hacia el punto de impacto
+            StartCoroutine(MoveMeteor(meteor, startPosition, targetPosition));
         }
 
         if (impactEffectPreFab != null )
@@ -82,6 +92,32 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
     }
 
+    private IEnumerator MoveMeteor(GameObject meteor, Vector2 from, Vector2 to)
+    {
+        float duration = 1.5f; // segundos que tarda en llegar
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            if (meteor == null) yield break; // seguridad por si se destruyó
+
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            // Lerp suaviza el movimiento de A a B
+            meteor.transform.position = Vector2.Lerp(from, to, t);
+
+            yield return null;
+        }
+
+        // Asegurarse que llegó exactamente al destino
+        if (meteor != null)
+        {
+            meteor.transform.position = to;
+            ApplyAreaDamage(to);     // daño al llegar
+            Destroy(meteor, 1f);   // desaparece después del impacto
+        }
+    }
 
     private void ApplyAreaDamage (Vector2 center)
     {
@@ -95,13 +131,13 @@ public class MeteorEvent : MonoBehaviour, IGameEvent
 
         foreach (Collider2D hit in hits)
         {
-          //  EnemyHealth enemyHealt = hit.GetComponent<EnemyHealth>();
+            Enemy enemy = hit.GetComponent<Enemy>();
 
-          //  if (enemyHealth != null )
-          //  {
-            //    enemyHealth.TakeDamage(impactDamage);
-              //  Debug.Log($"[MeteorEvent] Daño a {hit.gameObject.name}: {impactDamage}");
-            //}
+            if (enemy != null)
+            {
+                enemy.TakeDamage(impactDamage);
+                Debug.Log($"[MeteorEvent] Daño a {hit.gameObject.name}: {impactDamage}");
+            }
         }
 
     }
